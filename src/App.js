@@ -28,7 +28,7 @@ function App() {
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevState) => {
-      const updatedExpneses = prevState.concat([expense])
+      const updatedExpneses = [expense, ...prevState]
       return updatedExpneses;
     });
   }
