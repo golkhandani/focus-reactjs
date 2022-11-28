@@ -5,7 +5,7 @@ export default function ExpenseList({ expenses }) {
   return (
     <Card>
       {expenses.map((expense, i) => (
-        <ExpenseItem key={expense.key} expense={expense} />
+        <ExpenseItem key={expense.id + i} expense={expense} />
       ))}
     </Card>
   );
