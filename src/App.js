@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './App.css';
 import ExpenseList from './components/Expense/ExpenseList';
 import NewExpense from './components/NewExpense/NewExpense';
-import ExpensesFilter from './components/FilterExpense/ExpensesFilter';
 function App() {
   let initExpences = [
     {
@@ -34,22 +33,9 @@ function App() {
   }
 
 
-  const [filteredYear] = useState("2022");
-  const filteredExpnesesInit = structuredClone(expenses).filter(item => {
-    const itemDate = item.date.getFullYear().toString();
-    return itemDate === filteredYear;
-  });
-  const [filteredExpenses, setFilteredExpenses] = useState(filteredExpnesesInit);
 
-  const filterExpenseChangeHandler = (filter) => {
-    setFilteredExpenses(() => {
-      const updatedExpneses = structuredClone(expenses).filter(item => {
-        const itemDate = item.date.getFullYear().toString();
-        return itemDate === filter;
-      });
-      return updatedExpneses;
-    });
-  }
+
+
 
 
 
@@ -59,8 +45,8 @@ function App() {
   return (
     <div className='container'>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <ExpensesFilter onFilterChange={filterExpenseChangeHandler} />
-      <ExpenseList expenses={filteredExpenses} />
+
+      <ExpenseList expenses={expenses} />
     </div>
   );
 }
