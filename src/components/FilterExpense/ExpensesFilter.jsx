@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./ExpensesFilter.css";
-import Card from "../UI/Card";
 
 const ExpensesFilter = (props) => {
   const onChangeHandler = (event) => {

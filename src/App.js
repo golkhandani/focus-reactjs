@@ -30,22 +30,11 @@ function App() {
       const updatedExpneses = [expense, ...prevState];
       return updatedExpneses;
     });
-  }
-
-
-
-
-
-
-
-
-
-
+  };
 
   return (
     <div className='container'>
       <NewExpense onAddExpense={addExpenseHandler} />
-
       <ExpenseList expenses={expenses} />
     </div>
   );
