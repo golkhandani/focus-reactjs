@@ -17,7 +17,7 @@ export default function ExpenseList(props) {
   };
 
   let expencesContent = filterExpenses.length === 0 && (
-    <p>No expences found!</p>
+    <h2>No expences found!</h2>
   );
 
   if (filterExpenses.length > 0) {
