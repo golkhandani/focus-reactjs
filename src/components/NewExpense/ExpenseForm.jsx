@@ -52,9 +52,28 @@ const ExpenseForm = (props) => {
     };
     console.log("Submit expense", expense);
     props.onSaveExpense(expense);
+    closePanel();
     reset();
   };
-  return (
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const isFormVisibleHandler = (event) => {
+    setIsFormVisible((prevState) => {
+      return !prevState;
+    });
+  };
+
+  const closePanel = (event) => {
+    setIsFormVisible((prevState) => {
+      return !prevState;
+    });
+  };
+
+  const getFormContent = (
+    <button onClick={isFormVisibleHandler}>Add Expense</button>
+  );
+  const formContent = (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
@@ -87,10 +106,13 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={closePanel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
   );
+
+  return isFormVisible ? formContent : getFormContent;
 };
 
 export default ExpenseForm;

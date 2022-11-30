@@ -8,22 +8,31 @@ import { useState } from "react";
 
 export default function ExpenseList(props) {
   const [filteredYear, setFilteredYear] = useState("2022");
-  let expenses = structuredClone(props.expenses).filter((item) => {
+  let filterExpenses = structuredClone(props.expenses).filter((item) => {
     const itemDate = item.date.getFullYear().toString();
     return itemDate === filteredYear;
   });
   const filterExpenseChangeHandler = (filter) => {
     setFilteredYear(filter);
   };
+
+  let expencesContent = filterExpenses.length === 0 && (
+    <p>No expences found!</p>
+  );
+
+  if (filterExpenses.length > 0) {
+    expencesContent = filterExpenses.map((expense, i) => (
+      <ExpenseItem key={expense.id.toString()} expense={expense} />
+    ));
+  }
+
   return (
     <Card>
       <ExpensesFilter
         filteredYear={filteredYear}
         onFilterChange={filterExpenseChangeHandler}
       />
-      {expenses.map((expense, i) => (
-        <ExpenseItem key={expense.id + i} expense={expense} />
-      ))}
+      {expencesContent}
     </Card>
   );
 }
